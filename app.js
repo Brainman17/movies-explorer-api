@@ -1,26 +1,45 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
 
+// Пакеты
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const helmet = require('helmet');
 const { errors } = require('celebrate');
+
+// config.js
 const { PORT, DB_ADDRESS } = require('./config');
+
+// routes
 const { userRouter } = require('./routes/users');
 const { movieRouter } = require('./routes/movies');
-const { auth } = require('./middlewares/auth');
-const centralErrorHandler = require('./middlewares/centralErrorHandler');
-const celebrates = require('./middlewares/celebrates');
-const { createUser, login } = require('./controllers/users');
-const { NotFoundError } = require('./errors/NotFoundError');
+
+// middlewares
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { auth } = require('./middlewares/auth');
+const { centralErrorHandler } = require('./middlewares/centralErrorHandler');
+const { limiter } = require('./middlewares/express-rate-limit');
+
+// celebrates
+const celebrates = require('./middlewares/celebrates');
+
+// controllers
+const { createUser, login } = require('./controllers/users');
+
+// errors
+const { NotFoundError } = require('./errors/NotFoundError');
 
 const app = express();
 
 mongoose.connect(DB_ADDRESS, { useNewUrlParser: true });
 
 app.use(cors());
+app.use(helmet());
+app.use(limiter);
+
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(

@@ -43,4 +43,6 @@ function centralErrorHandler(err, req, res, next) {
   return res.status(ERROR_SERVER).send(err.message);
 }
 
-module.exports = centralErrorHandler;
+module.exports = {
+  centralErrorHandler,
+};
