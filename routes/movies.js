@@ -1,7 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 
 const movieRouter = express.Router();
+const celebrates = require('../middlewares/celebrates');
 
 const {
   getMovies,
@@ -10,7 +10,7 @@ const {
 } = require('../controllers/movies');
 
 movieRouter.get('/movies', getMovies);
-movieRouter.post('/movies', createMovies);
-movieRouter.delete('/movies/:movieId', deleteMovies);
+movieRouter.post('/movies', celebrates.createMovies, createMovies);
+movieRouter.delete('/movies/:movieId', celebrates.checkIdMovie, deleteMovies);
 
 module.exports = { movieRouter };

@@ -1,14 +1,14 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 
 const userRouter = express.Router();
+const celebrates = require('../middlewares/celebrates');
 
 const {
-  getUsers,
+  getUser,
   patchUsers,
 } = require('../controllers/users');
 
-userRouter.get('/users/me', getUsers);
-userRouter.patch('/users/me', patchUsers);
+userRouter.get('/users/me', celebrates.getUser, getUser);
+userRouter.patch('/users/me', celebrates.patchUsers, patchUsers);
 
 module.exports = { userRouter };

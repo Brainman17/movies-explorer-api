@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const mongoose = require('mongoose');
 const validator = require('validator');
 
@@ -30,7 +29,7 @@ const movieSchema = new mongoose.Schema({
       validator: (link) => validator.isURL(link, { protocols: ['http', 'https'], require_tld: true, require_protocol: true }),
     },
   },
-  trailerLink: {
+  trailer: {
     type: String,
     required: [true, 'Поле "trailerLink" должно быть заполнено'],
     validate: {

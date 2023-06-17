@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const Movie = require('../models/movie');
 const { NotFoundError } = require('../errors/NotFoundError');
 const { ForbiddenError } = require('../errors/ForbiddenError');

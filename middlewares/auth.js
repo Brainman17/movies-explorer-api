@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-/* eslint-disable import/no-extraneous-dependencies */
 const jwt = require('jsonwebtoken');
 const { UnauthorizedError } = require('../errors/UnauthorizedError');
 const { key } = require('../config');
