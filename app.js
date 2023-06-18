@@ -69,8 +69,11 @@ app.use('*', (res, req, next) => {
 app.use(errorLogger);
 
 app.use(errors());
+
 app.use(centralErrorHandler);
 
 app.listen(PORT, () => {
   console.log(`Слушаем порт ${PORT}`);
 });
+
+// ssh jegor-andreychuk@51.250.5.47
