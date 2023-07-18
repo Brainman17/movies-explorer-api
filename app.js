@@ -70,7 +70,7 @@ app.use(errors());
 app.use(centralErrorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Слушаем порт ${PORT}`);
+  console.log(`Слушаем ${PORT}`);
 });
 
 // ssh jegor-andreychuk@51.250.5.47

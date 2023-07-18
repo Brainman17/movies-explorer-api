@@ -40,12 +40,6 @@ const createMovies = celebrate({
   }),
 });
 
-const checkIdMovie = celebrate({
-  params: Joi.object().keys({
-    movieId: Joi.objectId().required(),
-  }),
-});
-
 module.exports = {
-  signUp, signIn, patchUsers, createMovies, checkIdMovie,
+  signUp, signIn, patchUsers, createMovies,
 };
